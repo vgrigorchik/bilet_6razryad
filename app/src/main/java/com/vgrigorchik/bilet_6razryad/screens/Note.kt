@@ -14,9 +14,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.vgrigorchik.bilet_6razryad.MainViewModel
 
 @Composable
-fun NoteScreen(navController: NavController) {
+fun NoteScreen(navController: NavController, viewModel: MainViewModel) {
     Scaffold(
         modifier = Modifier.fillMaxSize()
     ) {

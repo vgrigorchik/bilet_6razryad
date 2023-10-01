@@ -23,7 +23,7 @@ import com.vgrigorchik.bilet_6razryad.utils.TYPE_ROOM
 
 
 @Composable
-fun StartScreen(navController: NavController) {
+fun StartScreen(navController: NavController, viewModel: MainViewModel) {
     val context = LocalContext. current
     val mViewModel: MainViewModel = 
         viewModel(factory = MainViewModelFactory(context.applicationContext as Application))
@@ -63,13 +63,5 @@ fun StartScreen(navController: NavController) {
                 Text(text = "Firebase database")
             }
         }
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun prevStartScreen() {
-    Bilet_6razryadTheme {
-        StartScreen(navController = rememberNavController())
     }
 }

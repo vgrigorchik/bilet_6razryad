@@ -15,12 +15,15 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.vgrigorchik.bilet_6razryad.MainViewModel
+import com.vgrigorchik.bilet_6razryad.model.Note
 import com.vgrigorchik.bilet_6razryad.navigation.NavRoute
 
 @Composable
-fun AddScreen(navController: NavController) {
+fun AddScreen(navController: NavController, viewModel: MainViewModel) {
     var title by remember { mutableStateOf("") }
     var subtitle by remember { mutableStateOf("") }
+    var isButtonEnabled by remember { mutableStateOf(false) }
     Scaffold() {
         Column(
             modifier = Modifier.fillMaxSize(),
@@ -36,23 +39,30 @@ fun AddScreen(navController: NavController) {
 
             OutlinedTextField(
                 value = title,
-                onValueChange = { newTitle ->
-                    title = newTitle
+                onValueChange = {
+                    title = it
+                    isButtonEnabled = title.isNotEmpty() && subtitle.isNotEmpty()
                 },
-                label = { Text(text = "Note title") }
+                label = { Text(text = "Note title") },
+                isError = title.isEmpty()
             )
 
             OutlinedTextField(
                 value = subtitle,
-                onValueChange = { newSubtitle ->
-                    subtitle = newSubtitle
+                onValueChange = {
+                    subtitle = it
+                    isButtonEnabled = title.isNotEmpty() && subtitle.isNotEmpty()
                 },
-                label = { Text(text = "Note subtitle") }
+                label = { Text(text = "Note subtitle") },
+                isError = subtitle.isEmpty()
             )
             Button(
                 modifier = Modifier.padding(16.dp),
+                enabled = isButtonEnabled,
                 onClick = {
-                    navController.navigate(NavRoute.Main.route)
+                    viewModel.addNote(note = Note(title = title, subtitle = subtitle)) {
+                        navController.navigate(NavRoute.Main.route)
+                    }
                 }
             ) {
                 Text(text = "Add note")

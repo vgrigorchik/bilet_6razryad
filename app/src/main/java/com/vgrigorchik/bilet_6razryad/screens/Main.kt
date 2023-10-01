@@ -28,11 +28,8 @@ import com.vgrigorchik.bilet_6razryad.model.Note
 import com.vgrigorchik.bilet_6razryad.navigation.NavRoute
 
 @Composable
-fun MainScreen(navController: NavController) {
-    val context = LocalContext. current
-    val mViewModel: MainViewModel =
-        viewModel(factory = MainViewModelFactory(context.applicationContext as Application))
-
+fun MainScreen(navController: NavController, viewModel: MainViewModel) {
+    val notes = viewModel.readAllNotes().observeAsState(listOf()).value
     Scaffold(
         floatingActionButton = {
             FloatingActionButton(
@@ -47,11 +44,11 @@ fun MainScreen(navController: NavController) {
             }
         }
     ) {
-//        LazyColumn {
-//            items(notes) { note ->
-//                NoteItem(note = note, navController = navController)
-//            }
-//        }
+        LazyColumn {
+            items(notes) { note ->
+                NoteItem(note = note, navController = navController)
+            }
+        }
     }
 }
 
