@@ -19,8 +19,8 @@ import com.vgrigorchik.bilet_6razryad.navigation.NavRoute
 
 @Composable
 fun AddScreen(navController: NavController) {
-    var title by remember { mutableStateOf("")}
-    var subtitle by remember { mutableStateOf("")}
+    var title by remember { mutableStateOf("") }
+    var subtitle by remember { mutableStateOf("") }
     Scaffold() {
         Column(
             modifier = Modifier.fillMaxSize(),

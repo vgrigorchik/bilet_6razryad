@@ -30,10 +30,10 @@ fun NoteScreen(navController: NavController) {
                     .fillMaxSize()
                     .padding(32.dp)
             ) {
-                 Column(
-                     modifier = Modifier.padding(vertical = 8.dp),
-                     horizontalAlignment = Alignment.CenterHorizontally
-                 ) {
+                Column(
+                    modifier = Modifier.padding(vertical = 8.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
                     Text(
                         text = "Title",
                         fontSize = 24.sp,
@@ -46,7 +46,7 @@ fun NoteScreen(navController: NavController) {
                         fontWeight = FontWeight.Light,
                         modifier = Modifier.padding(top = 16.dp)
                     )
-                 }
+                }
             }
         }
     }
